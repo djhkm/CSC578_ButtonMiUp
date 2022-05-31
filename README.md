@@ -12,7 +12,7 @@ Clone this inside *www* folder in laragon or *htdocs* folder in xampp
 <html>
   <head>
   
-    coding...
+    codes...
   
     <?php
     include "function-customer.php"; / include "function-admin.php";
@@ -24,7 +24,7 @@ Clone this inside *www* folder in laragon or *htdocs* folder in xampp
   
     <?php include "navbar-customer.php";?> / <?php include "navbar-admin.php";?>
   
-    coding...
+    codes...
     
     <?php include "page-foot-customer.php";?> / <?php include "page-foot-admin.php";?>
     
