@@ -1,4 +1,4 @@
 <?php
-$db_con = '';
+$dbcon = '';
 include 'config/db_conn.php';
 ?>
