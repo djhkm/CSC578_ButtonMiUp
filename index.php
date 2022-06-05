@@ -50,7 +50,7 @@
                           <h5 class="mb-0">Log in</h5>
                         </div>
                         <div class="col-auto">
-                          <p class="fs--1 text-600 mb-0">or <a href="../pages/authentication/simple/register.html">Create an account</a></p>
+                          <p class="fs--1 text-600 mb-0">or <a href="pages/authentication/simple/register.html">Create an account</a></p>
                         </div>
                       </div>
                       <form>
@@ -67,7 +67,7 @@
                               <label class="form-check-label mb-0" for="modal-checkbox">Remember me</label>
                             </div>
                           </div>
-                          <div class="col-auto"><a class="fs--1" href="../pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
+                          <div class="col-auto"><a class="fs--1" href="pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
                         </div>
                         <div class="mb-3">
                           <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Log in</button>
@@ -101,7 +101,7 @@
                   <h5 id="modalLabel">Register</h5>
                 </div>
                 <div class="col-auto">
-                  <p class="fs--1 text-600 mb-0">Have an account? <a href="../pages/authentication/simple/login.html">Login</a></p>
+                  <p class="fs--1 text-600 mb-0">Have an account? <a href="pages/authentication/simple/login.html">Login</a></p>
                 </div>
               </div>
               <form>
@@ -145,7 +145,7 @@
       <!-- <section> begin ============================-->
       <section class="py-0 overflow-hidden light pb-0" id="banner">
 
-<!--        <div class="bg-holder overlay" style="background-image:url(../assets/img/generic/bg-1.jpg);background-position: center bottom;">-->
+<!--        <div class="bg-holder overlay" style="background-image:url(assets/img/generic/bg-1.jpg);background-position: center bottom;">-->
 <!--        </div>-->
         <div class="bg-holder overlay" style="background-color: gray; background-position: center bottom;">
         </div>
@@ -200,13 +200,13 @@
 
         <div class="container">
           <div class="row flex-center">
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="40" src="../assets/img/logos/b&amp;w/6.png" alt="" /></div>
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="45" src="../assets/img/logos/b&amp;w/11.png" alt="" /></div>
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="30" src="../assets/img/logos/b&amp;w/2.png" alt="" /></div>
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="30" src="../assets/img/logos/b&amp;w/4.png" alt="" /></div>
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="35" src="../assets/img/logos/b&amp;w/1.png" alt="" /></div>
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="40" src="../assets/img/logos/b&amp;w/10.png" alt="" /></div>
-            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="40" src="../assets/img/logos/b&amp;w/12.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="40" src="assets/img/logos/b&amp;w/6.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="45" src="assets/img/logos/b&amp;w/11.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="30" src="assets/img/logos/b&amp;w/2.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="30" src="assets/img/logos/b&amp;w/4.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="35" src="assets/img/logos/b&amp;w/1.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="40" src="assets/img/logos/b&amp;w/10.png" alt="" /></div>
+            <div class="col-3 col-sm-auto my-1 my-sm-3 px-card"><img class="landing-cta-img" height="40" src="assets/img/logos/b&amp;w/12.png" alt="" /></div>
           </div>
         </div>
         <!-- end of .container-->
@@ -230,7 +230,7 @@
             </div>
           </div>
           <div class="row flex-center mt-8">
-            <div class="col-md col-lg-5 col-xl-4 ps-lg-6"><img class="img-fluid px-6 px-md-0" src="../assets/img/icons/spot-illustrations/50.png" alt="" /></div>
+            <div class="col-md col-lg-5 col-xl-4 ps-lg-6"><img class="img-fluid px-6 px-md-0" src="assets/img/icons/spot-illustrations/50.png" alt="" /></div>
             <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
               <h5 class="text-danger"><span class="far fa-lightbulb me-2"></span>PLAN</h5>
               <h3>Blueprint &amp; design </h3>
@@ -238,7 +238,7 @@
             </div>
           </div>
           <div class="row flex-center mt-7">
-            <div class="col-md col-lg-5 col-xl-4 pe-lg-6 order-md-2"><img class="img-fluid px-6 px-md-0" src="../assets/img/icons/spot-illustrations/49.png" alt="" /></div>
+            <div class="col-md col-lg-5 col-xl-4 pe-lg-6 order-md-2"><img class="img-fluid px-6 px-md-0" src="assets/img/icons/spot-illustrations/49.png" alt="" /></div>
             <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
               <h5 class="text-info"> <span class="far fa-object-ungroup me-2"></span>BUILD</h5>
               <h3>38 Sets of components</h3>
@@ -246,7 +246,7 @@
             </div>
           </div>
           <div class="row flex-center mt-7">
-            <div class="col-md col-lg-5 col-xl-4 ps-lg-6"><img class="img-fluid px-6 px-md-0" src="../assets/img/icons/spot-illustrations/48.png" alt="" /></div>
+            <div class="col-md col-lg-5 col-xl-4 ps-lg-6"><img class="img-fluid px-6 px-md-0" src="assets/img/icons/spot-illustrations/48.png" alt="" /></div>
             <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
               <h5 class="text-success"><span class="far fa-paper-plane me-2"></span>DEPLOY</h5>
               <h3>Review and test</h3>
@@ -325,19 +325,19 @@
                   <div class="swiper-slide">
                     <div class="px-5 px-sm-6">
                       <p class="fs-sm-1 fs-md-2 fst-italic text-dark">Falcon is the best option if you are looking for a theme built with Bootstrap. On top of that, Falcon&apos;s creators and support staff are very brilliant and attentive to users&apos; needs.</p>
-                      <p class="fs-0 text-600">- Scott Tolinski, Web Developer</p><img class="w-auto mx-auto" src="../assets/img/logos/google.png" alt="" height="45" />
+                      <p class="fs-0 text-600">- Scott Tolinski, Web Developer</p><img class="w-auto mx-auto" src="assets/img/logos/google.png" alt="" height="45" />
                     </div>
                   </div>
                   <div class="swiper-slide">
                     <div class="px-5 px-sm-6">
                       <p class="fs-sm-1 fs-md-2 fst-italic text-dark">We&apos;ve become fanboys! Easy to change the modular design, great dashboard UI, enterprise-class support, fast loading time. What else do you want from a Bootstrap Theme?</p>
-                      <p class="fs-0 text-600">- Jeff Escalante, Developer</p><img class="w-auto mx-auto" src="../assets/img/logos/netflix.png" alt="" height="30" />
+                      <p class="fs-0 text-600">- Jeff Escalante, Developer</p><img class="w-auto mx-auto" src="assets/img/logos/netflix.png" alt="" height="30" />
                     </div>
                   </div>
                   <div class="swiper-slide">
                     <div class="px-5 px-sm-6">
                       <p class="fs-sm-1 fs-md-2 fst-italic text-dark">When I first saw Falcon, I was totally blown away by the care taken in the interface. It felt like something that I&apos;d really want to use and something I could see being a true modern replacement to the current class of Bootstrap themes.</p>
-                      <p class="fs-0 text-600">- Liam Martens, Designer</p><img class="w-auto mx-auto" src="../assets/img/logos/paypal.png" alt="" height="45" />
+                      <p class="fs-0 text-600">- Liam Martens, Designer</p><img class="w-auto mx-auto" src="assets/img/logos/paypal.png" alt="" height="45" />
                     </div>
                   </div>
                 </div>
@@ -362,7 +362,7 @@
       <!-- <section> begin ============================-->
       <section class="light">
 
-        <div class="bg-holder overlay" style="background-image:url(../assets/img/generic/bg-2.jpg);background-position: center top;">
+        <div class="bg-holder overlay" style="background-image:url(assets/img/generic/bg-2.jpg);background-position: center top;">
         </div>
         <!--/.bg-holder-->
 
