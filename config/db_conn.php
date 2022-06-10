@@ -1,5 +1,6 @@
 <?php
-session_start();
+if(session_status() === PHP_SESSION_NONE)
+    session_start();
 
 $DATABASE_HOST = '52.221.68.18';
 $DATABASE_USER = 'albayenlite_1144474';
