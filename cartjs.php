@@ -41,7 +41,7 @@ if(!isset($_SESSION['stickerRows']))
 
         $.ajax({
             type: "POST",
-            url: 'cartphp.php',
+            url: 'cartajax.php',
             data:{
                 action:actionString,
                 type:typeString
