@@ -19,9 +19,13 @@
     ?>
   </head>
 
-
   <body>
-
+  <?php
+  include "config/info_notification.php";
+  include "config/success_notification.php";
+  include "config/warning_notification.php";
+  include "config/danger_notification.php";
+  ?>
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
