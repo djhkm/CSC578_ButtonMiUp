@@ -75,13 +75,10 @@ include "function-customer.php";
                         <div class="row">
                             &emsp;
                         </div>
-                        <div class="card">
+                        <div class="card scrollbar-overlay" style="max-height: 600px;">
                             <div id="cart-card" class="card-body"></div>
                         </div>
                     </div>
-                    <script>
-                        //$("#cart-card").load("cartBadge.php");
-                    </script>
                     <!--==================================================-->
                     <!--                  Cart Total                      -->
                     <!--==================================================-->
