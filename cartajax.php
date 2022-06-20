@@ -7,10 +7,6 @@ if(session_status() === PHP_SESSION_NONE)
 $date = new DateTime("now", new DateTimeZone('Asia/Kuala_Lumpur'));
 $formattedDate = $date -> format('Y-m-d H:i:s');
 
-if(!isset($_SESSION['badgeOrders'])) //initialize array if not set yet
-    $_SESSION['badgeOrders'] = [];
-if(!isset($_SESSION['stickerOrders']))
-    $_SESSION['stickerOrders'] = [];
 
 // if doing ajax
 if(isset($_POST['action'])){

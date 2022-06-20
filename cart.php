@@ -1,6 +1,78 @@
 <!DOCTYPE html>
 <?php
 include "function-customer.php";
+if(session_status() === PHP_SESSION_NONE)
+    session_start();
+
+if(!isset($_SESSION['badgeOrders'])) //initialize array if not set yet
+    $_SESSION['badgeOrders'] = [];
+if(!isset($_SESSION['stickerOrders']))
+    $_SESSION['stickerOrders'] = [];
+
+if(!isset($_SESSION['badgeCount']))
+    $_SESSION['badgeCount'] = 0;
+if(!isset($_SESSION['stickerCount']))
+    $_SESSION['stickerCount'] = 0;
+if(!isset($_SESSION['absoluteBR']))
+    $_SESSION['absoluteBR'] = 0;
+if(!isset($_SESSION['absoluteSR']))
+    $_SESSION['absoluteSR'] = 0;
+
+if(!isset($_SESSION['badgeTypes'])){
+    $badgeTypeQuery = "SELECT * FROM BADGE_DETAILS";
+    if ($badgeTypeResults = mysqli_query($dbcon, $badgeTypeQuery)) {
+        $index = 0;
+        $_SESSION['badgeTypes'] = array();
+        while ($badgeTypeRow = mysqli_fetch_assoc($badgeTypeResults)) {
+            $_SESSION['badgeTypes'][$index] = array("id" => $badgeTypeRow['Type'], "desc" => $badgeTypeRow['Description']);
+            $index++;
+        }
+    }
+}
+
+if(!isset($_SESSION['badgeSizes'])){
+    $badgeSizeQuery = "SELECT * FROM BADGE_SIZE";
+    if ($badgeSizeResults = mysqli_query($dbcon, $badgeSizeQuery)) {
+        $index = 0;
+        $_SESSION['badgeSizes'] = array();
+        while ($badgeSizeRow = mysqli_fetch_assoc($badgeSizeResults)) {
+            $_SESSION['badgeSizes'][$index] = array("id" => $badgeSizeRow['Size'], "desc" => $badgeSizeRow['Description']);
+            $index++;
+        }
+    }
+}
+
+if(!isset($_SESSION['stickerTypes'])){
+    $stickerTypeQuery = "SELECT * FROM STICKER_DETAILS";
+    if ($stickerTypeResults = mysqli_query($dbcon, $stickerTypeQuery)) {
+        $index = 0;
+        $_SESSION['stickerTypes'] = array();
+        while ($stickerTypeRow = mysqli_fetch_assoc($stickerTypeResults)) {
+            $_SESSION['stickerTypes'][$index] = array("id" => $stickerTypeRow['Type'], "desc" => $stickerTypeRow['Description']);
+            $index++;
+        }
+    }
+}
+
+if(!isset($_SESSION['stickerSizes'])){
+    $stickerSizeQuery = "SELECT * FROM STICKER_SIZE";
+    if ($stickerSizeResults = mysqli_query($dbcon, $stickerSizeQuery)) {
+        $index = 0;
+        $_SESSION['stickerSizes'] = array();
+        while ($stickerSizeRow = mysqli_fetch_assoc($stickerSizeResults)) {
+            $_SESSION['stickerSizes'][$index] = array("id" => $stickerSizeRow['Size'], "desc" => $stickerSizeRow['Description']);
+            $index++;
+        }
+    }
+}
+
+if(!isset($_SESSION['stickerColors'])) {
+    $_SESSION['stickerColors'] = array();
+    $_SESSION['stickerColors'][0] = array("id" => 1, "desc" => "White");
+    $_SESSION['stickerColors'][1] = array("id" => 2, "desc" => "Black");
+    $_SESSION['stickerColors'][2] = array("id" => 3, "desc" => "Gold");
+
+}
 ?>
 <html lang="en-US" dir="ltr">
 

@@ -3,14 +3,6 @@ require_once 'cartclasses.php';
 if(session_status() === PHP_SESSION_NONE)
     session_start();
 
-if(!isset($_SESSION['badgeCount']))
-    $_SESSION['badgeCount'] = 0;
-if(!isset($_SESSION['stickerCount']))
-    $_SESSION['stickerCount'] = 0;
-if(!isset($_SESSION['absoluteBR']))
-    $_SESSION['absoluteBR'] = 0;
-if(!isset($_SESSION['absoluteSR']))
-    $_SESSION['absoluteSR'] = 0;
 ?>
 <script>
     var card;
@@ -102,7 +94,9 @@ if(!isset($_SESSION['absoluteSR']))
                         break;
                     }
                 }
+                console.log(data);
             }
+
         });
     }
 
@@ -117,7 +111,7 @@ if(!isset($_SESSION['absoluteSR']))
                 value:updateValue
             },
             success:function (data){
-                //console.log("POSTED update, data is \n" + data);
+                console.log("POSTED update, data is \n" + data);
             }
         });
     }
@@ -194,23 +188,32 @@ if(!isset($_SESSION['absoluteSR']))
                 '<label for="itemBadge[' + absoluteBR + '][badgeType]"class="ms-2">Badge Type</label>' +
                 '<select name="itemBadge[' + absoluteBR + '][badgeType]" id="itemBadge[' + absoluteBR + '][badgeType]" class="form-select" onchange="onChangeAjax(1, '+ absoluteBR +', \'type\', this.value)">' +
                 '<option selected disabled>Select the badge type.</option>'+
-                '<option>Keychain</option><option>Pin</option><option>Magnet</option></select>'+
-                '</div>'+
-
+                <?php
+                //'<option>Keychain</option><option>Pin</option><option>Magnet</option></select></div>'+
+                for ($i = 0; $i < count($_SESSION['badgeTypes']); $i++) { // go through all badge types
+                    echo "'<option value=\"{$_SESSION['badgeTypes'][$i]['id']}\">{$_SESSION['badgeTypes'][$i]['desc']}</option>' +";
+                }
+                ?>
+                '</select></div>' +
                 // badge size
                 '<div class="form-floating col-md-3 col-sm-12">'+
                 '<label for="itemBadge[' + absoluteBR + '][badgeSize]" class="ms-2">Badge Size</label>'+
                 '<select name="itemBadge[' + absoluteBR + '][badgeSize]" id="itemBadge[' + absoluteBR + '][badgeSize]"class="form-select"  onchange="onChangeAjax(1, '+ absoluteBR +', \'size\', this.value)">'+
-                '<option selected disabled>Select the badge size.</option>'+
-                '<option>58mm</option><option>32mm</option></select></div>'+
-
+                '<option selected disabled>Select the badge size.</option>' +
+                <?php
+                //'<option>58mm</option><option>32mm</option></select></div>'+ // hiding comment here to prevent showing up in html source
+                for ($i = 0; $i < count($_SESSION['badgeSizes']); $i++) { // go through all badge sizes
+                    echo "'<option value=\"{$_SESSION['badgeSizes'][$i]['id']}\">{$_SESSION['badgeSizes'][$i]['desc']}</option>' +";
+                }
+                ?>
+                '</select></div>' +
                 // badge quantity
                 '<div class="form-floating col-md-2 col-sm-12">'+
                 '<label for="itemBadge[' + absoluteBR + '][badgeQty]" class="ms-2">Quantity</label>'+
                 '<input name="itemBadge[' + absoluteBR + '][badgeQty]" id="itemBadge[' + absoluteBR + '][badgeQty]" type="number" class="form-control" value="1" min="1"  onchange="onChangeAjax(1, '+ absoluteBR +', \'qty\', this.value)"/></div>'+
 
                 '<div class="col-md-1 col-sm-12 d-flex justify-content-end justify-content-md-center">'+
-                '<button type="button" class="btn btn-danger" onclick="removeItem(1, this)"><span class="bi bi-trash"></span></button></div></div>';
+                '<button type="button" class="btn btn-danger" onclick="removeItem(1, this, ' + absoluteBR +')"><span class="bi bi-trash"></span></button></div></div>';
             if(badgeCount === 0){ // if row count is 0
                 $("#badgeRows").html(addString);
             }else{
@@ -242,7 +245,7 @@ if(!isset($_SESSION['absoluteSR']))
                 '<option selected disabled>Select the color.</option><option>White</option><option>Black</option><option>Gold</option></select></div>'+
 
                 '<div class="col-md-1 col-sm-12 d-flex justify-content-end justify-content-md-center">'+
-                '<button type="button" class="btn btn-danger float-sm-end" onclick="removeItem(2, this)"><span class="bi bi-trash"></span></button></div></div>';
+                '<button type="button" class="btn btn-danger float-sm-end" onclick="removeItem(2, this, ' + absoluteSR + ')"><span class="bi bi-trash"></span></button></div></div>';
             if(stickerCount === 0){
                 $("#stickerRows").html(addString);
             }else{

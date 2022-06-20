@@ -1,37 +1,18 @@
 <?php
 require_once 'cartclasses.php';
-require_once 'config/db_conn.php';
 if(session_status() === PHP_SESSION_NONE)
     session_start();
 
 $string = '';
 
-$badgeTypeQuery = "SELECT * FROM BADGE_DETAILS";
-if($badgeTypeResults = mysqli_query($dbcon, $badgeTypeQuery)){
-    $index = 0;
-    $badgeTypes = array();
-    while($badgeTypeRow = mysqli_fetch_assoc($badgeTypeResults)){
-        $badgeTypes[$index] = array("id" => $badgeTypeRow['Type'], "desc" => $badgeTypeRow['Description']);
-        $index++;
-    }
-}
 
-$badgeSizeQuery = "SELECT * FROM BADGE_SIZE";
-if($badgeSizeResults = mysqli_query($dbcon, $badgeSizeQuery)){
-    $index = 0;
-    $badgeSizes = array();
-    while($badgeSizeRow = mysqli_fetch_assoc($badgeSizeResults)){
-        $badgeSizes[$index] = array("id" => $badgeSizeRow['Size'], "desc" => $badgeSizeRow['Description']);
-        $index++;
-    }
-}
 ?>
 <div class="row sticky-top bg-white">
     <div class="col-6">
         <h3 id="badgeHeader">Badge</h3>
     </div>
     <div class="col-6" align="right">
-        <button type="button" class="btn btn-success" onclick="addDeleteAjax(1, 1, index)"><span class="bi bi-plus-circle"></span></button>
+        <button type="button" class="btn btn-success" onclick="addDeleteAjax(1, 1, -1)"><span class="bi bi-plus-circle"></span></button>
     </div>
     <div class="table table-responsive d-none d-lg-block" align="center">
         <div class="thead border-bottom" id="badgeThead">
@@ -97,13 +78,13 @@ if($badgeSizeResults = mysqli_query($dbcon, $badgeSizeQuery)){
                                 "<label for='itemBadge[{$row -> getIndex()}][badgeType]' class='ms-2'>Badge Type</label>" .
                                 "<select name='itemBadge[{$row -> getIndex()}][badgeType]' id='itemBadge[{$row -> getIndex()}][badgeType]' class='form-select' onchange='onChangeAjax(1, {$row -> getIndex()}, \"type\", this.value)'>" .
                                 "<option selected disabled>Select the badge type</option>";
-                            for ($i = 0; $i < count($badgeTypes); $i++) { // go through all badge types
-                                $string .= "<option value='{$badgeTypes[$i]['id']}'";
+                            for ($i = 0; $i < count($_SESSION['badgeTypes']); $i++) { // go through all badge types
+                                $string .= "<option value='{$_SESSION['badgeTypes'][$i]['id']}'";
 
-                                if($row -> getType() == $badgeTypes[$i]['id'])
+                                if($row -> getType() == $_SESSION['badgeTypes'][$i]['id'])
                                     $string .= " selected";
 
-                                $string .=">{$badgeTypes[$i]['desc']}</option>";
+                                $string .=">{$_SESSION['badgeTypes'][$i]['desc']}</option>";
                             }
                             $string .= "</select></div>";
 
@@ -113,13 +94,13 @@ if($badgeSizeResults = mysqli_query($dbcon, $badgeSizeQuery)){
                                 "<label for='itemBadge[{$row -> getIndex()}][badgeSize]' class='ms-2'>Badge Size</label>" .
                                 "<select name='itemBadge[{$row -> getIndex()}][badgeSize]' id='itemBadge[{$row -> getIndex()}][badgeSize]' class='form-select' onchange='onChangeAjax(1, {$row -> getIndex()},\"size\", this.value)'>" .
                                 "<option selected disabled>Select the badge size</option>";
-                            for ($i = 0; $i < count($badgeSizes); $i++) { // go through all badge sizes
-                                $string .= "<option value='{$badgeSizes[$i]['id']}'";
+                            for ($i = 0; $i < count($_SESSION['badgeSizes']); $i++) { // go through all badge sizes
+                                $string .= "<option value='{$_SESSION['badgeSizes'][$i]['id']}'";
 
-                                if($row -> getSize() == $badgeSizes[$i]['id'])
+                                if($row -> getSize() == $_SESSION['badgeSizes'][$i]['id'])
                                     $string .= " selected";
 
-                                $string .=">{$badgeSizes[$i]['desc']}</option>";
+                                $string .=">{$_SESSION['badgeSizes'][$i]['desc']}</option>";
                             }
                             $string .= "</select></div>";
 

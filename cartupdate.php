@@ -3,11 +3,10 @@ require_once 'cartclasses.php';
 if(session_status() === PHP_SESSION_NONE)
     session_start();
 
-
 //echo 'before if isset';
 if(isset($_POST['index'])){
     $index = filter_input(INPUT_POST, 'index', FILTER_SANITIZE_NUMBER_INT);
-    //echo "entered isset index\n";
+    echo "entered isset index $index\n";
 
     switch($_POST['type']){
         case 1:{
@@ -15,8 +14,8 @@ if(isset($_POST['index'])){
             //echo "\nvalue is {$_POST['value']}\n";
             foreach($_SESSION['badgeOrders'] as $badgeRow){
                 if($badgeRow -> getIndex() == $index){
-                    //echo "matched index: badgeRow on index {$badgeRow -> getIndex()}";
-                    //echo "\nupdating column '{$_POST['column']}' with value {$_POST['value']}";
+                    echo "matched index: badgeRow on index {$badgeRow -> getIndex()}";
+                    echo "\nupdating column '{$_POST['column']}' with value {$_POST['value']}";
                     switch($_POST['column']) {
                         case 'type':{
                             $_SESSION['badgeOrders'][$index] -> setType((int)filter_input(INPUT_POST, 'value', FILTER_SANITIZE_NUMBER_INT));
@@ -32,7 +31,7 @@ if(isset($_POST['index'])){
                     break;
                 }
             }
-            //echo var_dump($_SESSION['badgeOrders']);
+            echo var_dump($_SESSION['badgeOrders']);
             break;
         }case 2:{
             foreach ($_SESSION['stickerOrders'] as $stickerRow){
