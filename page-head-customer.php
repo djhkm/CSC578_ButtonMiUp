@@ -23,6 +23,9 @@
 <link href="assets/css/theme.min.css" rel="stylesheet" id="style-default">
 <link href="assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
 <link href="assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+
+<link href="assets/css/theme-cus.css" rel="stylesheet">
+
 <script>
   var isRTL = JSON.parse(localStorage.getItem('isRTL'));
   if (isRTL) {
@@ -38,4 +41,5 @@
     userLinkRTL.setAttribute('disabled', true);
   }
 </script>
+
 <script src="assets/js/jquery-3.6.0.min.js"></script>
