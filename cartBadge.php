@@ -4,8 +4,6 @@ if(session_status() === PHP_SESSION_NONE)
     session_start();
 
 $string = '';
-
-
 ?>
 <div class="row sticky-top bg-white">
     <div class="col-6">

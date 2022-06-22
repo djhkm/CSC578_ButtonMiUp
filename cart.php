@@ -4,11 +4,14 @@ include "function-customer.php";
 if(session_status() === PHP_SESSION_NONE)
     session_start();
 
-if(!isset($_SESSION['badgeOrders'])) //initialize array if not set yet
+/* initialize cart items array */
+if(!isset($_SESSION['badgeOrders']))
     $_SESSION['badgeOrders'] = [];
 if(!isset($_SESSION['stickerOrders']))
     $_SESSION['stickerOrders'] = [];
 
+
+/* initialize counts */
 if(!isset($_SESSION['badgeCount']))
     $_SESSION['badgeCount'] = 0;
 if(!isset($_SESSION['stickerCount']))
@@ -18,6 +21,8 @@ if(!isset($_SESSION['absoluteBR']))
 if(!isset($_SESSION['absoluteSR']))
     $_SESSION['absoluteSR'] = 0;
 
+
+/* initialize <select> items */
 if(!isset($_SESSION['badgeTypes'])){
     $badgeTypeQuery = "SELECT * FROM BADGE_DETAILS";
     if ($badgeTypeResults = mysqli_query($dbcon, $badgeTypeQuery)) {
@@ -158,47 +163,8 @@ if(!isset($_SESSION['stickerColors'])) {
                         <div class="card sticky-top">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h4>Estimated Price</h4>
-                                        </div>
-                                    </div>
                                     <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                Subtotal
-                                            </div>
-                                            <div class="col-md-2" align="right">
-                                                RM
-                                            </div>
-                                            <div class="col-md-4" align="right">
-                                                xx.xx
-                                            </div>
-                                        </div>
-                                        <div class="row border-bottom">
-                                            <div class="col-md-6">
-                                                Shipping Fee
-                                            </div>
-                                            <div class="col-md-2" align="right">
-                                                RM
-                                            </div>
-                                            <div class="col-md-4" align="right">
-                                                8.00
-                                            </div>
-                                        </div>
-                                        <div class="row border-bottom">
-                                            <div class="col-6">
-                                                Total
-                                            </div>
-                                            <div class="col-2" align="right">
-                                                RM
-                                            </div>
-                                            <div class="col-4" style="font-weight:bold" align="right">
-                                                1337.00
-                                            </div>
-                                        </div>
-                                        <div class="row">&emsp;</div>
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col">
                                                 <h4>Contact Details</h4>
                                             </div>
@@ -233,10 +199,74 @@ if(!isset($_SESSION['stickerColors'])) {
                                                 <input type="text" class="form-control" />
                                             </div>
                                         </div>
-                                        <div class="row">&emsp;</div>
+                                        <div class="row mt-4">
+                                            <div class="col">
+                                                <h4>Delivery Address</h4>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col">
-                                                <button type="button" class="btn btn-primary col-12">Place Order</button>
+                                                <input type="text" class="form-control" placeholder="Address Line 1" disabled/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Address Line 2" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Postcode" disabled/>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="City" disabled/>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="State" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col">
+                                                <h4>Estimated Price</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                Subtotal
+                                            </div>
+                                            <div class="col-md-2" align="right">
+                                                RM
+                                            </div>
+                                            <div class="col-md-4" align="right">
+                                                xx.xx
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom">
+                                            <div class="col-md-6">
+                                                Shipping Fee
+                                            </div>
+                                            <div class="col-md-2" align="right">
+                                                RM
+                                            </div>
+                                            <div class="col-md-4" align="right">
+                                                8.00
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom">
+                                            <div class="col-6">
+                                                Total
+                                            </div>
+                                            <div class="col-2" align="right">
+                                                RM
+                                            </div>
+                                            <div class="col-4" style="font-weight:bold" align="right">
+                                                1337.00
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col">
+                                                <button type="button" class="btn btn-lg btn-primary bg-theme-cus col-12">Place Order</button>
                                             </div>
                                         </div>
                                     </div>

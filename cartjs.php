@@ -230,19 +230,40 @@ if(session_status() === PHP_SESSION_NONE)
                 '<label for="itemSticker[' + absoluteSR + '][stickerType]" class="ms-2">Sticker Type</label>'+
                 '<select id="itemSticker[' + absoluteSR + '][stickerType]" required class="form-select" name="stickerType[' + absoluteSR + '][stickerType]" onchange="onChangeAjax(2, '+ absoluteSR +', \'type\', this.value)">'+
                 '<option selected disabled>Select the sticker type.</option>'+
-                '<option>Vinyl</option><option>Transparent</option></select></div>'+
+
+                <?php
+                //'<option>Vinyl</option><option>Transparent</option></select></div>'+
+                for ($i = 0; $i < count($_SESSION['stickerTypes']); $i++) { // go through all badge types
+                    echo "'<option value=\"{$_SESSION['stickerTypes'][$i]['id']}\">{$_SESSION['stickerTypes'][$i]['desc']}</option>' +";
+                }
+                ?>
+                '</select></div>' +
 
                 // sticker size
                 '<div class="form-floating col-md-3 col-sm-12">'+
                 '<label for="itemSticker[' + absoluteSR + '][stickerSize]" class="ms-2">Sticker Size</label>'+
                 '<select id="itemSticker[' + absoluteSR + '][stickerSize]" required class="form-select" name="stickerSize[' + absoluteSR + '][stickerSize]" onchange="onChangeAjax(2, '+ absoluteSR +', \'size\', this.value)">' +
-                '<option selected disabled>Select the sticker size.</option><option>30mm x 60mm</option><option>60mm x 120mm</option></select></div>'+
+                '<option selected disabled>Select the sticker size.</option>' +
+                <?php
+                //<option>30mm x 60mm</option><option>60mm x 120mm</option></select></div>'+
+                for ($i = 0; $i < count($_SESSION['stickerSizes']); $i++) { // go through all badge types
+                    echo "'<option value=\"{$_SESSION['stickerSizes'][$i]['id']}\">{$_SESSION['stickerSizes'][$i]['desc']}</option>' +";
+                }
+                ?>
+                '</select></div>' +
 
                 // sticker color
                 '<div class="form-floating col-md-2 col-sm-12">'+
                 '<label for="itemSticker[' + absoluteSR + '][stickerColor]" class="ms-2">Sticker Color</label>'+
                 '<select id="itemSticker[' + absoluteSR + '][stickerColor]" required class="form-select" name="stickerColor[' + absoluteSR + '][stickerColor]" onchange="onChangeAjax(2, '+ absoluteSR +', \'color\', this.value)">'+
-                '<option selected disabled>Select the color.</option><option>White</option><option>Black</option><option>Gold</option></select></div>'+
+                '<option selected disabled>Select the color.</option>' +
+                <?php
+                //<option>White</option><option>Black</option><option>Gold</option></select></div>'+
+                for ($i = 0; $i < count($_SESSION['stickerColors']); $i++) { // go through all badge types
+                    echo "'<option value=\"{$_SESSION['stickerColors'][$i]['id']}\">{$_SESSION['stickerColors'][$i]['desc']}</option>' +";
+                }
+                ?>
+                '</select></div>' +
 
                 '<div class="col-md-1 col-sm-12 d-flex justify-content-end justify-content-md-center">'+
                 '<button type="button" class="btn btn-danger float-sm-end" onclick="removeItem(2, this, ' + absoluteSR + ')"><span class="bi bi-trash"></span></button></div></div>';

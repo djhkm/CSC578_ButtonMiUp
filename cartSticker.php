@@ -4,8 +4,6 @@ if(session_status() === PHP_SESSION_NONE)
     session_start();
 
 $string = '';
-
-
 ?>
 <div class="row sticky-top bg-white">
     <div class="col-6">
@@ -56,6 +54,7 @@ $string = '';
             //$testIndex = 0;
             if(isset($_SESSION['stickerCount'])) {
                 if ($_SESSION['stickerCount'] > 0) {
+                    //echo "<script>console.log('stickercount is > 0')</script>";
                     foreach ($_SESSION['stickerOrders'] as $row) {
                         //for($i = 0; $i < count($_SESSION['stickerOrders']); $i++){
                         //echo "entering loop $i";
@@ -134,6 +133,7 @@ $string = '';
 
             }
             //echo "<script>console.log($string);</script>";
+            echo $string;
             ?>
             <!--div class="row">
                 <div class="col-lg-3 col-xs-12">
