@@ -24,7 +24,18 @@
 <link href="assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
 <link href="assets/css/user.min.css" rel="stylesheet" id="user-style-default">
 
+
+<!-- ===============================================-->
+<!--    Custom Stylesheets-->
+<!-- ===============================================-->
 <link href="assets/css/theme-cus.css" rel="stylesheet">
+
+
+<!-- ===============================================-->
+<!--    Custom JavaScripts-->
+<!-- ===============================================-->
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/loader.js"></script>
 
 <script>
   var isRTL = JSON.parse(localStorage.getItem('isRTL'));
@@ -40,6 +51,9 @@
     linkRTL.setAttribute('disabled', true);
     userLinkRTL.setAttribute('disabled', true);
   }
-</script>
 
-<script src="assets/js/jquery-3.6.0.min.js"></script>
+  $( function() { // do things when the document is ready
+    // initialize our loader overlay
+    loader.initialize();
+  });
+</script>

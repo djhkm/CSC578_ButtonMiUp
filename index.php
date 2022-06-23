@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include "function-customer.php";?>
 <html lang="en-US" dir="ltr">
 
   <head>
@@ -14,7 +15,6 @@
 
 
     <?php
-    include "function-customer.php";
     include "page-head-customer.php";
     ?>
   </head>

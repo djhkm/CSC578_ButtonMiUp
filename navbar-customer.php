@@ -23,36 +23,33 @@
           }
 
           ?>
-            <li class="nav-item ms-5">
-              <a class="nav-link text-dark p-0 m-0" href="#" onclick="logout_user()">
-                <table>
-                  <tr>
-                    <td><i class="fas fa-user fs-1"></i>&emsp;</td>
-                    <td>Logged in as:<br><?php echo $user_name;?></td>
-                  </tr>
-                </table>
-              </a>
-            </li>
+          <li class="nav-item ms-5">
+            <a class="nav-link text-dark p-0 m-0" href="details-customer.php">
+              <!--              <a class="nav-link text-dark p-0 m-0" href="function-customer.php?type=logout_all" onclick="return logout_user()">-->
+              <table>
+                <tr>
+                  <td><i class="fas fa-user fs-1"></i>&emsp;</td>
+                  <td>Logged in as:<br><?php echo $user_name;?></td>
+                </tr>
+              </table>
+            </a>
+          </li>
+
+          <li class="nav-item pt-1 ms-4">
+            <a class="nav-link rounded bg-theme-cus" href="function-customer.php?type=logout_all" onclick="return logout_user()">Logout</a>
+          </li>
 
           <script>
             function logout_user() {
               var x = confirm("Are you sure want to log out?");
-
-              if (x === true) {
-                <?php unset($_SESSION["user_id"]);?>
-                location.reload();
-                //return true;
-              }
-              else {
-                //return false;
-              }
+              return x === true;
             }
           </script>
 
-          <?php
+        <?php
         }
         else {
-          ?>
+        ?>
           <li class="nav-item dropdown ms-5" id="login_form_dropdown">
             <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownLogin" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fs-1"></i>&emsp;Login</a>
             <div class="dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card" aria-labelledby="navbarDropdownLogin">
@@ -75,10 +72,10 @@
                     </div>
                     <div class="row flex-between-center">
                       <div class="col-auto">
-<!--                        <div class="form-check mb-0">-->
-<!--                          <input class="form-check-input" type="checkbox" id="modal-checkbox" />-->
-<!--                          <label class="form-check-label mb-0" for="modal-checkbox">Remember me</label>-->
-<!--                        </div>-->
+                        <!--                        <div class="form-check mb-0">-->
+                        <!--                          <input class="form-check-input" type="checkbox" id="modal-checkbox" />-->
+                        <!--                          <label class="form-check-label mb-0" for="modal-checkbox">Remember me</label>-->
+                        <!--                        </div>-->
                       </div>
                       <div class="col-auto"><a class="fs--1" href="pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
                     </div>
@@ -86,13 +83,13 @@
                       <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="login_btn" id="login_btn">Log in</button>
                     </div>
                   </form>
-<!--                  <div class="position-relative mt-4">-->
-<!--                    <hr class="bg-300" />-->
-<!--                    <div class="divider-content-center">or log in with</div>-->
-<!--                  </div>-->
-<!--                  <div class="row g-2 mt-2 flex-center">-->
-<!--                    <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100" href="javascript:void(0)"><span class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a></div>-->
-<!--                  </div>-->
+                  <!--                  <div class="position-relative mt-4">-->
+                  <!--                    <hr class="bg-300" />-->
+                  <!--                    <div class="divider-content-center">or log in with</div>-->
+                  <!--                  </div>-->
+                  <!--                  <div class="row g-2 mt-2 flex-center">-->
+                  <!--                    <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100" href="javascript:void(0)"><span class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a></div>-->
+                  <!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -135,23 +132,21 @@
                   },
                   success:function (readData) {
                     $('#infoNotificationToast').toast('hide');
+                    $('#login_btn').attr('disabled', false);
 
                     var dataResult = JSON.parse(readData);
                     if (dataResult.statusCode === 200) {
-                      $('#login_btn').attr('disabled', false);
                       $('#successNotificationText').html('Successfully logged in.');
                       $('#successNotificationToast').toast('show');
                       console.log(dataResult.statusText);
                       location.reload();
                     }
                     else if (dataResult.statusCode === 409) {
-                      $('#login_btn').attr('disabled', false);
                       $('#warningNotificationText').html('Credential does not match. Please login again.');
                       $('#warningNotificationToast').toast('show');
                       console.log(dataResult.statusText);
                     }
                     else if (dataResult.statusCode === 410) {
-                      $('#login_btn').attr('disabled', false);
                       $('#warningNotificationText').html('Email not found. Please register an account.');
                       $('#warningNotificationToast').toast('show');
                       console.log(dataResult.statusText);
@@ -198,10 +193,10 @@
             <div class="mb-0">
               <input class="form-control" type="password" autocomplete="on" placeholder="Password" name="register_cust_password_1" id="register_cust_password_1" required oninput="register_cust_password_strong()" />
             </div>
-<!--            <div class="mb-3 col-sm-6 position-relative">-->
-<!--              <input class="form-control" type="password" autocomplete="on" placeholder="Confirm Password" name="register_cust_password_2" id="register_cust_password_2" required oninput="register_cust_password_check()" />-->
-<!--              <div class="invalid-tooltip" id="register_cust_password_invalid_tooltip">Password does not match.</div>-->
-<!--            </div>-->
+            <!--            <div class="mb-3 col-sm-6 position-relative">-->
+            <!--              <input class="form-control" type="password" autocomplete="on" placeholder="Confirm Password" name="register_cust_password_2" id="register_cust_password_2" required oninput="register_cust_password_check()" />-->
+            <!--              <div class="invalid-tooltip" id="register_cust_password_invalid_tooltip">Password does not match.</div>-->
+            <!--            </div>-->
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="register_checkbox" onclick="register_view_password()" />
@@ -211,13 +206,13 @@
             <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="register_cust_btn" id="register_cust_btn" disabled>Register</button>
           </div>
         </form>
-<!--        <div class="position-relative mt-4">-->
-<!--          <hr class="bg-300" />-->
-<!--          <div class="divider-content-center">or register with</div>-->
-<!--        </div>-->
-<!--        <div class="row g-2 mt-2 flex-center">-->
-<!--          <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100" href="javascript:void(0)"><span class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a></div>-->
-<!--        </div>-->
+        <!--        <div class="position-relative mt-4">-->
+        <!--          <hr class="bg-300" />-->
+        <!--          <div class="divider-content-center">or register with</div>-->
+        <!--        </div>-->
+        <!--        <div class="row g-2 mt-2 flex-center">-->
+        <!--          <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100" href="javascript:void(0)"><span class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a></div>-->
+        <!--        </div>-->
       </div>
       <div class="w-100 valid-tooltip fw-bold" id="register_cust_password_valid_strong_tooltip"></div>
       <div class="w-100 invalid-tooltip fw-bold" id="register_cust_password_invalid_strong_tooltip"></div>
@@ -442,23 +437,21 @@
         },
         success:function (readData) {
           $('#infoNotificationToast').toast('hide');
+          $('#register_cust_btn').attr('disabled', false);
 
           var dataResult = JSON.parse(readData);
           if (dataResult.statusCode === 200) {
-            $('#register_cust_btn').attr('disabled', false);
             $('#successNotificationText').html('Successfully registered.');
             $('#successNotificationToast').toast('show');
             $('#register_form_modal').modal('hide');
             console.log(dataResult.statusText);
           }
-          else if (dataResult.statusCode === 410) {
-            $('#register_cust_btn').attr('disabled', false);
-            $('#dangerNotificationText').html('Fatal error. Please try again.');
+          else if (dataResult.statusCode === 500) {
+            $('#dangerNotificationText').html('Internal server error. Please try again.');
             $('#dangerNotificationToast').toast('show');
             console.log(dataResult.statusText);
           }
           else if (dataResult.statusCode === 409) {
-            $('#register_cust_btn').attr('disabled', false);
             $('#register_cust_email').addClass('is-invalid');
             $('#register_cust_email_invalid_tooltip').css('display', 'block');
             // $('#warningNotificationText').html('Please use another email.');
