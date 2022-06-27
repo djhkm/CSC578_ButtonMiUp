@@ -1,7 +1,9 @@
 <?php
+if(session_status() === PHP_SESSION_NONE)
+  session_start();
 $dbcon = "";
-//include "config/db_conn.php";
-include "https://edess.asia/ss_dbname_32042127.php";
+include "config/db_conn.php";
+//include "http://csc578.allprojectcs270.com/db_conn.php";
 
 if (isset($_POST["type"])) {
 
