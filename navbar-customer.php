@@ -4,7 +4,7 @@
     <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
       <ul class="navbar-nav ms-auto">
 
-        <li class="nav-item">
+        <li class="nav-item text-center ms-5 me-5">
           <a class="nav-link text-dark" href="cart.php"><i class="fas fa-shopping-cart fs-1"></i></a>
         </li>
 
@@ -23,19 +23,19 @@
           }
 
           ?>
-          <li class="nav-item ms-5">
+          <li class="nav-item text-center mb-2 ms-2 me-2">
             <a class="nav-link text-dark p-0 m-0" href="details-customer.php">
               <!--              <a class="nav-link text-dark p-0 m-0" href="function-customer.php?type=logout_all" onclick="return logout_user()">-->
-              <table>
+              <table class="w-100">
                 <tr>
                   <td><i class="fas fa-user fs-1"></i>&emsp;</td>
-                  <td>Logged in as:<br><?php echo $user_name;?></td>
+                  <td class="start-0">Logged in as:<br><?php echo $user_name;?></td>
                 </tr>
               </table>
             </a>
           </li>
 
-          <li class="nav-item pt-1 ms-4">
+          <li class="nav-item text-center ms-2 me-2">
             <a class="nav-link rounded bg-theme-cus" href="function-customer.php?type=logout_all" onclick="return logout_user()">Logout</a>
           </li>
 
@@ -50,7 +50,7 @@
         }
         else {
         ?>
-          <li class="nav-item dropdown ms-5" id="login_form_dropdown">
+          <li class="nav-item dropdown text-center mb-2 ms-2 me-2" id="login_form_dropdown">
             <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownLogin" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fs-1"></i>&emsp;Login</a>
             <div class="dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card" aria-labelledby="navbarDropdownLogin">
               <div class="card shadow-none navbar-card-login">
@@ -158,8 +158,8 @@
             });
           </script>
 
-          <li class="nav-item pt-1 ms-4">
-            <a class="nav-link rounded bg-theme-cus" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#register_form_modal">Register</a>
+          <li class="nav-item ms-2 me-2">
+            <a class="nav-link rounded bg-theme-cus text-center" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#register_form_modal">Register</a>
           </li>
           <?php
         }

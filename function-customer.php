@@ -1,6 +1,8 @@
 <?php
-if(session_status() === PHP_SESSION_NONE)
+if (session_status() === PHP_SESSION_NONE) {
   session_start();
+}
+
 $dbcon = "";
 include "config/db_conn.php";
 //include "http://csc578.allprojectcs270.com/db_conn.php";
