@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <?php include "function-admin.php";?>
 <html lang="en-US" dir="ltr">
-
+<?php
+if (isset($_GET['edit'])) {
+    $id = $_GET['edit'];
+    $update = true;
+    $record = $dbcon -> query("SELECT `order`.*, `customer`.`Name`, `customer`.`Email` FROM `order` LEFT JOIN `customer` ON `order`.`CustomerID` = `customer`.`CustomerID`;");
+    if (count($record) == 1 ) {
+        $n = mysqli_fetch_array($record);
+        $Name = $n['Name'];
+        $Address = $n['Address'];
+    }
+}
+?>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,13 +70,14 @@ include "../config/danger_notification.php";
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="DatePlaced">DatePlaced</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Name">Name</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Email">Email</th>
+                              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Action">Action</th>
                           </tr>
                           </thead>
 
                           <tbody class="list" id="table-purchase-body">
                           <?php
                           $query_read_user_name = $dbcon -> query("SELECT `order`.*, `customer`.`Name`, `customer`.`Email` FROM `order` LEFT JOIN `customer` ON `order`.`CustomerID` = `customer`.`CustomerID`;");
-                          if (@$query_read_user_name -> num_rows > 0) {
+                          if ($query_read_user_name -> num_rows > 0) {
                               while ($row_read_user_name = $query_read_user_name -> fetch_object()) {
                                   ?>
                                   <tr class="btn-reveal-trigger">
@@ -73,8 +85,14 @@ include "../config/danger_notification.php";
                                       <td class="align-middle white-space-nowrap InvoiceNumber"><?php echo $row_read_user_name -> InvoiceNumber;?></td>
                                       <td class="align-middle white-space-nowrap OrderStatus"><span class="badge badge rounded-pill badge-soft-success"><?php echo $row_read_user_name -> OrderStatus;?></span></td>
                                       <td class="align-middle white-space-nowrap DatePlaced"><?php echo $row_read_user_name -> DatePlaced;?></td>
-                                      <td class="align-middle white-space-nowrap CustomerID"><?php echo $row_read_user_name -> Name;?></td>
-                                      <td class="align-middle white-space-nowrap CustomerID"><?php echo $row_read_user_name -> Email;?></td>
+                                      <td class="align-middle white-space-nowrap Name"><?php echo $row_read_user_name -> Name;?></td>
+                                      <td class="align-middle white-space-nowrap Email"><?php echo $row_read_user_name -> Email;?></td>
+                                      <td>
+                                          <a href="index.php?edit=<?php echo $row['Name']; ?>" class="edit_btn" >Edit</a>
+                                      </td>
+                                      <td>
+                                          <a href="server.php?del=<?php echo $row['Name']; ?>" class="del_btn">Delete</a>
+                                      </td>
 
                                       </td>
                                   </tr>
