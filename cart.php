@@ -1,9 +1,6 @@
+<?php include "function-customer.php";?>
 <!DOCTYPE html>
 <?php
-include "function-customer.php";
-if(session_status() === PHP_SESSION_NONE)
-  session_start();
-
 /* initialize cart items array */
 if(!isset($_SESSION['badgeOrders']))
   $_SESSION['badgeOrders'] = [];
@@ -192,6 +189,10 @@ include "config/danger_notification.php";
                       $cart_cust_name = $row_get_a_cust_details -> Name;
                       $cart_cust_email = $row_get_a_cust_details -> Email;
                       $cart_cust_phone = $row_get_a_cust_details -> PhoneNum;
+                      if ($cart_cust_phone == NULL) {
+                        $cart_cust_phone = "<a href='details-customer.php'>Click here to add</a>";
+                      }
+
                       $cart_cust_address = $row_get_a_cust_details -> Address;
 
                       parse_str($row_get_a_cust_details -> Address, $output);
@@ -204,17 +205,17 @@ include "config/danger_notification.php";
                     </div>
                     <div class="row mt-2">
                       <div class="col-12">
-                        <p class="m-0">Name: <span class="fw-bold"><?= $cart_cust_name;?></span></p>
+                        <p class="m-0">Name: <span class="fw-bold"><?php echo $cart_cust_name;?></span></p>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <p class="m-0">Phone: <span class="fw-bold"><?= $cart_cust_email;?></span></p>
+                        <p class="m-0">Email: <span class="fw-bold"><?php echo $cart_cust_email;?></span></p>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <p class="m-0">Name: <span class="fw-bold"><?= $cart_cust_phone;?></span></p>
+                        <p class="m-0">Phone: <span class="fw-bold"><?php echo $cart_cust_phone;?></span></p>
                       </div>
                     </div>
                     <div class="row mt-4">
@@ -224,23 +225,23 @@ include "config/danger_notification.php";
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <p class="m-0">Address Line 1: <span class="fw-bold"><?= $output['address1'];?></span></p>
+                        <p class="m-0">Address Line 1: <span class="fw-bold"><?php if (isset($output['address1'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <p class="m-0">Address Line 2: <span class="fw-bold"><?= $output['address2'];?></span></p>
+                        <p class="m-0">Address Line 2: <span class="fw-bold"><?php if (isset($output['address1'])) { echo @$output['address2']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-lg-4">
-                        <p class="m-0">Postcode: <span class="fw-bold"><?= $output['postcode'];?></span></p>
+                        <p class="m-0">Postcode: <span class="fw-bold"><?php if (isset($output['postcode'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
                       </div>
                       <div class="col-lg-4">
-                        <p class="m-0">City: <span class="fw-bold"><?= $output['city'];?></span></p>
+                        <p class="m-0">City: <span class="fw-bold"><?php if (isset($output['city'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
                       </div>
                       <div class="col-lg-4">
-                        <p class="m-0">State: <span class="fw-bold"><?= $output['state'];?></span></p>
+                        <p class="m-0">State: <span class="fw-bold"><?php if (isset($output['state'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
                       </div>
                     </div>
                     <?php

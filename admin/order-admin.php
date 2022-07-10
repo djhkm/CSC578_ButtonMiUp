@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include "function-admin.php";?>
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <?php
 if (isset($_GET['edit'])) {

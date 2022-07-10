@@ -4,7 +4,7 @@
     <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
       <ul class="navbar-nav ms-auto">
 
-        <li class="nav-item text-center ms-5 me-5">
+        <li class="nav-item text-center ms-5 me-5 d-none d-lg-block">
           <a class="nav-link text-dark" href="cart.php"><i class="fas fa-shopping-cart fs-1"></i></a>
         </li>
 
@@ -26,12 +26,20 @@
           <li class="nav-item text-center mb-2 ms-2 me-2">
             <a class="nav-link text-dark p-0 m-0" href="details-customer.php">
               <!--              <a class="nav-link text-dark p-0 m-0" href="function-customer.php?type=logout_all" onclick="return logout_user()">-->
-              <table class="w-100">
+              <table class="w-100 d-none d-lg-block">
                 <tr>
                   <td><i class="fas fa-user fs-1"></i>&emsp;</td>
-                  <td class="start-0">Logged in as:<br><?php echo $user_name;?></td>
+                  <td class="text-start">Logged in as:<br><?php echo $user_name;?></td>
                 </tr>
               </table>
+              <center class="d-lg-none">
+                <table>
+                  <tr>
+                    <td><i class="fas fa-user fs-1"></i>&emsp;</td>
+                    <td class="text-start">Logged in as: <?php echo $user_name;?></td>
+                  </tr>
+                </table>
+              </center>
             </a>
           </li>
 
@@ -164,6 +172,11 @@
           <?php
         }
         ?>
+
+        <li class="nav-item text-center ms-5 me-5 d-lg-none mt-3">
+          <a class="nav-link text-dark" href="cart.php"><i class="fas fa-shopping-cart fs-1"></i></a>
+        </li>
+
       </ul>
     </div>
   </div>
@@ -290,12 +303,12 @@
       else {
         stringDesc += '<i class="far fa-times-circle"></i> Number<br>';
       }
-      if (password.match(/[$@#&!]+/)) {
+      if (password.match(/[$@#!]+/)) {
         passScore++;
-        stringDesc += '<i class="far fa-check-circle"></i> Symbol<br>';
+        stringDesc += '<i class="far fa-check-circle"></i> Symbol ($@#!)<br>';
       }
       else {
-        stringDesc += '<i class="far fa-times-circle"></i> Symbol<br>';
+        stringDesc += '<i class="far fa-times-circle"></i> Symbol ($@#!)<br>';
       }
       if (password.length >= 8) {
         passScore++;

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
 <?php
 include "function-customer.php";
 if (!isset($_SESSION["user_id"])) {
   echo "<script>location.href = 'index.php';</script>";
 }
 ?>
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
 <head>
@@ -49,7 +49,7 @@ include "config/danger_notification.php";
             <form class="row g-3" method="post" id="update_cust_details_form">
               <div class="col-lg-12">
                 <label class="form-label" for="update_cust_details_name">Name</label>
-                <input class="form-control" name="update_cust_details_name" id="update_cust_details_name" type="text" />
+                <input class="form-control" name="update_cust_details_name" id="update_cust_details_name" type="text" required />
               </div>
               <div class="col-lg-6">
                 <label class="form-label" for="update_cust_details_email">Email</label>
@@ -57,27 +57,27 @@ include "config/danger_notification.php";
               </div>
               <div class="col-lg-6">
                 <label class="form-label" for="update_cust_details_phone">Phone</label>
-                <input class="form-control" name="update_cust_details_phone" id="update_cust_details_phone" type="text" />
+                <input class="form-control" name="update_cust_details_phone" id="update_cust_details_phone" type="text" required />
               </div>
               <div class="col-lg-12">
                 <label class="form-label" for="update_cust_details_address1">Address Line 1</label>
-                <input class="form-control" name="update_cust_details_address1" id="update_cust_details_address1" type="text" />
+                <input class="form-control" name="update_cust_details_address1" id="update_cust_details_address1" type="text" required />
               </div>
               <div class="col-lg-12">
                 <label class="form-label" for="update_cust_details_address2">Address Line 2</label>
-                <input class="form-control" name="update_cust_details_address2" id="update_cust_details_address2" type="text" />
+                <input class="form-control" name="update_cust_details_address2" id="update_cust_details_address2" type="text" required />
               </div>
               <div class="col-lg-4">
                 <label class="form-label" for="update_cust_details_postcode">Postcode</label>
-                <input class="form-control" name="update_cust_details_postcode" id="update_cust_details_postcode" type="text" />
+                <input class="form-control" name="update_cust_details_postcode" id="update_cust_details_postcode" type="text" required />
               </div>
               <div class="col-lg-4">
                 <label class="form-label" for="update_cust_details_city">City</label>
-                <input class="form-control" name="update_cust_details_city" id="update_cust_details_city" type="text" />
+                <input class="form-control" name="update_cust_details_city" id="update_cust_details_city" type="text" required />
               </div>
               <div class="col-lg-4">
                 <label class="form-label" for="update_cust_details_state">State</label>
-                <input class="form-control" name="update_cust_details_state" id="update_cust_details_state" type="text" />
+                <input class="form-control" name="update_cust_details_state" id="update_cust_details_state" type="text" required />
               </div>
               <div class="col-12 d-flex justify-content-end">
                 <button class="btn bg-theme-cus w-100" type="submit" name="update_cust_details_btn" id="update_cust_details_btn">Update Profile</button>

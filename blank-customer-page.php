@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include "function-customer.php";?>
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
 <head>
