@@ -116,6 +116,29 @@ if(session_status() === PHP_SESSION_NONE)
         });
     }
 
+    function onChangeFileUpload(rowIndex){
+
+      var fd = new FormData();
+      var imageFile = document.getElementById('itemBadge[' + rowIndex + '][badgeImage]');
+      fd.append('index', rowIndex);
+      fd.append('file', imageFile.files[0]);
+
+      $.ajax({
+        type: 'POST',
+        url: 'cartfileupload.php',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success:function (data){
+          //console.log('POSTED update, data is \n' + data);
+
+          var dataResult = JSON.parse(data);
+          document.getElementById('itemBadge[' + rowIndex + '][badgeImageName]').innerHTML = dataResult.fileName;
+        }
+      });
+
+    }
+
     function updateCard(type){
         $("#badgeBtn").removeClass("btn-info");
         $("#stickerBtn").removeClass("btn-info");
@@ -181,12 +204,12 @@ if(session_status() === PHP_SESSION_NONE)
         if(type === 1){
             addString +=
                 // badge image file
-                '<input name="itemBadge[' + absoluteBR + '][badgeImage]" class="form-control" type="file" accept="image/jpeg, image/png" /></div>'+
+                '<input name="itemBadge[' + absoluteBR + '][badgeImage]" id="itemBadge[' + absoluteBR + '][badgeImage]" class="form-control" type="file" accept="image/jpeg, image/png" onchange="onChangeFileUpload('+ absoluteBR +')" required /><p class="text-start fs--1">Current File: <span class="text-info" id="itemBadge[' + absoluteBR + '][badgeImageName]">No File Uploaded</span></p></div>'+
 
                 // badge type
                 '<div class="form-floating col-md-3 col-sm-12">'+
                 '<label for="itemBadge[' + absoluteBR + '][badgeType]"class="ms-2">Badge Type</label>' +
-                '<select name="itemBadge[' + absoluteBR + '][badgeType]" id="itemBadge[' + absoluteBR + '][badgeType]" class="form-select" onchange="onChangeAjax(1, '+ absoluteBR +', \'type\', this.value)">' +
+                '<select name="itemBadge[' + absoluteBR + '][badgeType]" id="itemBadge[' + absoluteBR + '][badgeType]" class="form-select" onchange="onChangeAjax(1, '+ absoluteBR +', \'type\', this.value)" required >' +
                 '<option selected disabled>Select the badge type.</option>'+
                 <?php
                 //'<option>Keychain</option><option>Pin</option><option>Magnet</option></select></div>'+
@@ -198,7 +221,7 @@ if(session_status() === PHP_SESSION_NONE)
                 // badge size
                 '<div class="form-floating col-md-3 col-sm-12">'+
                 '<label for="itemBadge[' + absoluteBR + '][badgeSize]" class="ms-2">Badge Size</label>'+
-                '<select name="itemBadge[' + absoluteBR + '][badgeSize]" id="itemBadge[' + absoluteBR + '][badgeSize]"class="form-select"  onchange="onChangeAjax(1, '+ absoluteBR +', \'size\', this.value)">'+
+                '<select name="itemBadge[' + absoluteBR + '][badgeSize]" id="itemBadge[' + absoluteBR + '][badgeSize]"class="form-select"  onchange="onChangeAjax(1, '+ absoluteBR +', \'size\', this.value)" required >'+
                 '<option selected disabled>Select the badge size.</option>' +
                 <?php
                 //'<option>58mm</option><option>32mm</option></select></div>'+ // hiding comment here to prevent showing up in html source
@@ -210,7 +233,7 @@ if(session_status() === PHP_SESSION_NONE)
                 // badge quantity
                 '<div class="form-floating col-md-2 col-sm-12">'+
                 '<label for="itemBadge[' + absoluteBR + '][badgeQty]" class="ms-2">Quantity</label>'+
-                '<input name="itemBadge[' + absoluteBR + '][badgeQty]" id="itemBadge[' + absoluteBR + '][badgeQty]" type="number" class="form-control" value="1" min="1"  onchange="onChangeAjax(1, '+ absoluteBR +', \'qty\', this.value)"/></div>'+
+                '<input name="itemBadge[' + absoluteBR + '][badgeQty]" id="itemBadge[' + absoluteBR + '][badgeQty]" type="number" class="form-control" value="1" min="1"  onchange="onChangeAjax(1, '+ absoluteBR +', \'qty\', this.value)" required /></div>'+
 
                 '<div class="col-md-1 col-sm-12 d-flex justify-content-end justify-content-md-center">'+
                 '<button type="button" class="btn btn-danger" onclick="removeItem(1, this, ' + absoluteBR +')"><span class="bi bi-trash"></span></button></div></div>';
@@ -222,13 +245,13 @@ if(session_status() === PHP_SESSION_NONE)
         }else{
             addString +=
                 // sticker labels
-                '<textarea required class="textarea form-control" name="itemSticker[' + absoluteSR + '][stickerLabels]" placeholder="Separate labels by new lines. e.g.&#10;Salt&#10;Sugar&#10;Sugar&#10;Flour" rows="5" onchange="onChangeAjax(2, '+ absoluteSR +', \'labels\', this.value)"></textarea>' +
+                '<textarea required class="textarea form-control" name="itemSticker[' + absoluteSR + '][stickerLabels]" id="itemSticker[' + absoluteSR + '][stickerLabels]" placeholder="Separate labels by new lines. e.g.&#10;Salt&#10;Sugar&#10;Sugar&#10;Flour" rows="5" onchange="onChangeAjax(2, '+ absoluteSR +', \'labels\', this.value)" required ></textarea>' +
                 '<!--br><div>* For multiple of the same label, write them multiple times.</div--></div>'+
 
                 // sticker type
                 '<div class="form-floating col-md-3 col-sm-12">'+
                 '<label for="itemSticker[' + absoluteSR + '][stickerType]" class="ms-2">Sticker Type</label>'+
-                '<select id="itemSticker[' + absoluteSR + '][stickerType]" required class="form-select" name="stickerType[' + absoluteSR + '][stickerType]" onchange="onChangeAjax(2, '+ absoluteSR +', \'type\', this.value)">'+
+                '<select id="itemSticker[' + absoluteSR + '][stickerType]" required class="form-select" name="stickerType[' + absoluteSR + '][stickerType]" onchange="onChangeAjax(2, '+ absoluteSR +', \'type\', this.value)" required >'+
                 '<option selected disabled>Select the sticker type.</option>'+
 
                 <?php
@@ -242,7 +265,7 @@ if(session_status() === PHP_SESSION_NONE)
                 // sticker size
                 '<div class="form-floating col-md-3 col-sm-12">'+
                 '<label for="itemSticker[' + absoluteSR + '][stickerSize]" class="ms-2">Sticker Size</label>'+
-                '<select id="itemSticker[' + absoluteSR + '][stickerSize]" required class="form-select" name="stickerSize[' + absoluteSR + '][stickerSize]" onchange="onChangeAjax(2, '+ absoluteSR +', \'size\', this.value)">' +
+                '<select id="itemSticker[' + absoluteSR + '][stickerSize]" required class="form-select" name="stickerSize[' + absoluteSR + '][stickerSize]" onchange="onChangeAjax(2, '+ absoluteSR +', \'size\', this.value)" required >' +
                 '<option selected disabled>Select the sticker size.</option>' +
                 <?php
                 //<option>30mm x 60mm</option><option>60mm x 120mm</option></select></div>'+
@@ -255,7 +278,7 @@ if(session_status() === PHP_SESSION_NONE)
                 // sticker color
                 '<div class="form-floating col-md-2 col-sm-12">'+
                 '<label for="itemSticker[' + absoluteSR + '][stickerColor]" class="ms-2">Sticker Color</label>'+
-                '<select id="itemSticker[' + absoluteSR + '][stickerColor]" required class="form-select" name="stickerColor[' + absoluteSR + '][stickerColor]" onchange="onChangeAjax(2, '+ absoluteSR +', \'color\', this.value)">'+
+                '<select id="itemSticker[' + absoluteSR + '][stickerColor]" required class="form-select" name="stickerColor[' + absoluteSR + '][stickerColor]" onchange="onChangeAjax(2, '+ absoluteSR +', \'color\', this.value)" required >'+
                 '<option selected disabled>Select the color.</option>' +
                 <?php
                 //<option>White</option><option>Black</option><option>Gold</option></select></div>'+

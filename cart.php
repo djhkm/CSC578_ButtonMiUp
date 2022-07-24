@@ -112,7 +112,7 @@ include "config/danger_notification.php";
 
 
   <div class="container-fluid mt-7">
-    <form>
+    <form id="at_cart_form" method="post" enctype="multipart/form-data">
       <div class="row">
         <!--==================================================-->
         <!--                  Items                           -->
@@ -131,7 +131,6 @@ include "config/danger_notification.php";
                           <h5>Badge</h5>
                           <p>Keychain, Pin, &amp; Magnet badges</p>
                         </div>
-
                       </a>
                     </div>
                   </div>
@@ -190,7 +189,7 @@ include "config/danger_notification.php";
                       $cart_cust_email = $row_get_a_cust_details -> Email;
                       $cart_cust_phone = $row_get_a_cust_details -> PhoneNum;
                       if ($cart_cust_phone == NULL) {
-                        $cart_cust_phone = "<a href='details-customer.php'>Click here to add</a>";
+                        $cart_cust_phone = "<a class='fw-semi-bold' href='details-customer.php'>Click here to add</a>";
                       }
 
                       $cart_cust_address = $row_get_a_cust_details -> Address;
@@ -220,28 +219,28 @@ include "config/danger_notification.php";
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <h4>Delivery Address</h4>
+                        <h4>Delivery Address&nbsp;<?php if (!isset($output['address1'])) { echo "<a class='fs-1' href='details-customer.php'>Add Address</a>"; }?></h4>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <p class="m-0">Address Line 1: <span class="fw-bold"><?php if (isset($output['address1'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
+                        <p class="m-0">Address Line 1: <span class="fw-bold"><?php if (isset($output['address1'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <p class="m-0">Address Line 2: <span class="fw-bold"><?php if (isset($output['address1'])) { echo @$output['address2']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
+                        <p class="m-0">Address Line 2: <span class="fw-bold"><?php if (isset($output['address1'])) { echo @$output['address2']; } else { echo "No data"; } ?></span></p>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-4">
-                        <p class="m-0">Postcode: <span class="fw-bold"><?php if (isset($output['postcode'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
+                      <div class="col-lg-6">
+                        <p class="m-0">Postcode: <span class="fw-bold"><?php if (isset($output['postcode'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
                       </div>
-                      <div class="col-lg-4">
-                        <p class="m-0">City: <span class="fw-bold"><?php if (isset($output['city'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
+                      <div class="col-lg-6">
+                        <p class="m-0">City: <span class="fw-bold"><?php if (isset($output['city'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
                       </div>
-                      <div class="col-lg-4">
-                        <p class="m-0">State: <span class="fw-bold"><?php if (isset($output['state'])) { echo @$output['address1']; } else { echo "<a href='details-customer.php'>Click here to add</a>"; } ?></span></p>
+                      <div class="col-lg-12">
+                        <p class="m-0">State: <span class="fw-bold"><?php if (isset($output['state'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
                       </div>
                     </div>
                     <?php
@@ -255,32 +254,32 @@ include "config/danger_notification.php";
                     </div>
                     <div class="row">
                       <div class="col">
-                        Name
+                        Name<span class="text-danger">*</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" required />
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        Phone
+                        Phone<span class="text-danger">*</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" required />
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        Email
+                        Email<span class="text-danger">*</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" />
+                        <input type="email" class="form-control" required />
                       </div>
                     </div>
                     <div class="row mt-4">
@@ -290,30 +289,43 @@ include "config/danger_notification.php";
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Address Line 1" disabled/>
+                        Address Line 1<span class="text-danger">*</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Address Line 2" disabled/>
+                        <input type="text" class="form-control" required  />
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Postcode" disabled/>
+                        Address Line 2
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        Postcode<span class="text-danger">*</span>
+                        <input type="text" class="form-control" required />
                       </div>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="City" disabled/>
+                        City<span class="text-danger">*</span>
+                        <input type="text" class="form-control" required />
                       </div>
+                    </div>
+                    <div class="row">
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="State" disabled/>
+                        State<span class="text-danger">*</span>
+                        <input type="text" class="form-control" required />
                       </div>
                     </div>
                     <?php
                   }
                   ?>
-
-
 
                   <div class="row mt-4">
                     <div class="col">
@@ -328,7 +340,7 @@ include "config/danger_notification.php";
                       RM
                     </div>
                     <div class="col-md-4" align="right">
-                      xx.xx
+                      0.00
                     </div>
                   </div>
                   <div class="row border-bottom">
@@ -342,20 +354,20 @@ include "config/danger_notification.php";
                       8.00
                     </div>
                   </div>
-                  <div class="row border-bottom">
+                  <div class="row border-bottom d-flex align-items-center">
                     <div class="col-6">
                       Total
                     </div>
                     <div class="col-2" align="right">
                       RM
                     </div>
-                    <div class="col-4" style="font-weight:bold" align="right">
-                      1337.00
+                    <div class="col-4 fs-3" style="font-weight:bold" align="right">
+                      8.00
                     </div>
                   </div>
                   <div class="row mt-4">
                     <div class="col">
-                      <button type="button" class="btn btn-lg bg-theme-cus col-12">Place Order</button>
+                      <button type="button" class="btn btn-lg bg-theme-cus col-12" id="at_cart_btn">Place Order</button>
                     </div>
                   </div>
                 </div>
@@ -365,6 +377,51 @@ include "config/danger_notification.php";
         </div>
       </div>
     </form>
+
+    <script>
+      $(document).ready(function () {
+
+        $('#at_cart_btn').on('click', function (event) {
+          event.preventDefault();
+          console.log('cart start');
+
+          $.ajax({
+            type: 'POST',
+            url: 'function-customer.php',
+            data: {
+              type:'at_cart'
+            },
+            beforeSend:function () {
+              $('#at_cart_btn').attr('disabled', 'disabled');
+              $('#infoNotificationText').html('Validating...');
+              $('#infoNotificationToast').toast('show');
+              loader.showLoader();
+            },
+            success:function (data){
+              //console.log('POSTED update, data is \n' + data);
+
+              var dataResult = JSON.parse(data);
+              document.getElementById('itemBadge[' + rowIndex + '][badgeImageName]').innerHTML = dataResult.fileName;
+            }
+          });
+
+          // var xBadge = document.getElementById('badgeRows').querySelectorAll('.form-control, .form-select');
+          // var iBadge, badgeProperties = '';
+          // for (iBadge = 0; iBadge < xBadge.length; iBadge++) {
+          //   badgeProperties += xBadge[iBadge].id + ',';
+          // }
+          // console.log(badgeProperties);
+          //
+          // var xSticker = document.getElementById('stickerRows').querySelectorAll('.form-control, .form-select');
+          // var iSticker, stickerProperties = '';
+          // for (iSticker = 0; iSticker < xSticker.length; iSticker++) {
+          //   stickerProperties += xSticker[iSticker].id + ',';
+          // }
+          // console.log(stickerProperties);
+        });
+
+      });
+    </script>
   </div>
 </main>
 <!-- ===============================================-->

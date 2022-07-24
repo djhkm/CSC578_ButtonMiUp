@@ -67,13 +67,13 @@ $string = '';
 
                                 // sticker labels
                                 "<div class='col-md-3 col-sm-12'>" .
-                                "<textarea required class='textarea form-control' name='itemSticker[{$row -> getIndex()}][stickerLabels]' placeholder=\"Separate labels by new lines. e.g.&#10;Salt&#10;Sugar&#10;Sugar&#10;Flour\" rows=\"5\" onchange=\"onChangeAjax(2, {$row -> getIndex()}, 'labels', this.value)\">{$row -> getLabels()}</textarea>" .
+                                "<textarea required class='textarea form-control' name='itemSticker[{$row -> getIndex()}][stickerLabels]' id='itemSticker[{$row -> getIndex()}][stickerLabels]' placeholder=\"Separate labels by new lines. e.g.&#10;Salt&#10;Sugar&#10;Sugar&#10;Flour\" rows=\"5\" onchange=\"onChangeAjax(2, {$row -> getIndex()}, 'labels', this.value)\" required >{$row -> getLabels()}</textarea>" .
                                 "</div>" .
 
                                 // sticker type
                                 "<div class='form-floating col-md-3 col-sm-12'>" .
                                 "<label for='itemSticker[{$row -> getIndex()}][stickerType]' class='ms-2'>Sticker Type</label>" .
-                                "<select name='itemSticker[{$row -> getIndex()}][stickerType]' id='itemSticker[{$row -> getIndex()}][stickerType]' class='form-select' onchange='onChangeAjax(2, {$row -> getIndex()}, \"type\", this.value)'>" .
+                                "<select name='itemSticker[{$row -> getIndex()}][stickerType]' id='itemSticker[{$row -> getIndex()}][stickerType]' class='form-select' onchange='onChangeAjax(2, {$row -> getIndex()}, \"type\", this.value)' required >" .
                                 "<option selected disabled>Select the sticker type</option>";
                             for ($i = 0; $i < count($_SESSION['stickerTypes']); $i++) { // go through all sticker types
                                 $string .= "<option value='{$_SESSION['stickerTypes'][$i]['id']}'";
@@ -89,7 +89,7 @@ $string = '';
                             $string .=
                                 "<div class='form-floating col-md-3 col-sm-12'>" .
                                 "<label for='itemSticker[{$row -> getIndex()}][stickerSize]' class='ms-2'>Sticker Size</label>" .
-                                "<select name='itemSticker[{$row -> getIndex()}][stickerSize]' id='itemSticker[{$row -> getIndex()}][stickerSize]' class='form-select' onchange='onChangeAjax(2, {$row -> getIndex()},\"size\", this.value)'>" .
+                                "<select name='itemSticker[{$row -> getIndex()}][stickerSize]' id='itemSticker[{$row -> getIndex()}][stickerSize]' class='form-select' onchange='onChangeAjax(2, {$row -> getIndex()},\"size\", this.value)' required >" .
                                 "<option selected disabled>Select the sticker size</option>";
                             for ($i = 0; $i < count($_SESSION['stickerSizes']); $i++) { // go through all sticker sizes
                                 $string .= "<option value='{$_SESSION['stickerSizes'][$i]['id']}'";
@@ -105,7 +105,7 @@ $string = '';
                             $string .=
                                 "<div class='form-floating col-md-2 col-sm-12'>" .
                                 "<label for='itemSticker[{$row -> getIndex()}][stickerColor]' class='ms-2'>Sticker Color</label>" .
-                                "<select name='itemSticker[{$row -> getIndex()}][stickerColor]' id='itemSticker[{$row -> getIndex()}][stickerColor]' class='form-select' onchange='onChangeAjax(2, {$row -> getIndex()},\"color\", this.value)'>" .
+                                "<select name='itemSticker[{$row -> getIndex()}][stickerColor]' id='itemSticker[{$row -> getIndex()}][stickerColor]' class='form-select' onchange='onChangeAjax(2, {$row -> getIndex()},\"color\", this.value)' required >" .
                                 "<option selected disabled>Select the color</option>";
                             for ($i = 0; $i < count($_SESSION['stickerColors']); $i++) { // go through all sticker sizes
                                 $string .= "<option value='{$_SESSION['stickerColors'][$i]['id']}'";
