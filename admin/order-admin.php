@@ -66,10 +66,11 @@ include "../config/danger_notification.php";
                           <tr>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="OrderID">OrderID</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="InvoiceNumber">InvoiceNumber</th>
-                              <th class="sort align-middle white-space-nowrap text-end pe-4" data-sort="OrderStatus<">OrderStatus</th>
+                              <th class="sort align-middle white-space-nowrap pe-4" data-sort="OrderStatus<">OrderStatus</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="DatePlaced">DatePlaced</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Name">Name</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Email">Email</th>
+                              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Action">Action</th>
                               <th class="sort pe-1 align-middle white-space-nowrap" data-sort="Action">Action</th>
                           </tr>
                           </thead>
@@ -88,10 +89,10 @@ include "../config/danger_notification.php";
                                       <td class="align-middle white-space-nowrap Name"><?php echo $row_read_user_name -> Name;?></td>
                                       <td class="align-middle white-space-nowrap Email"><?php echo $row_read_user_name -> Email;?></td>
                                       <td>
-                                          <a href="index.php?edit=<?php echo $row['Name']; ?>" class="edit_btn" >Edit</a>
+                                          <a href="index.php?edit=<?php echo $row['Name']; ?>" class="btn btn-primary" >Edit</a>
                                       </td>
                                       <td>
-                                          <a href="server.php?del=<?php echo $row['Name']; ?>" class="del_btn">Delete</a>
+                                          <a class="btn btn-danger" href="function-admin.php?delete_row=<?php echo $row -> orderID;?>" title="Delete Class" onclick="return deleteclass()">Delete</a>
                                       </td>
 
                                       </td>
@@ -140,6 +141,19 @@ include "../config/danger_notification.php";
 <!-- ===============================================-->
 
 <?php include "page-foot-admin.php";?>
+
+<script>
+    function deleteclass(){
+        var x = confirm("Are you sure want to delete this class?");
+
+        if(x==true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
 
 </body>
 
