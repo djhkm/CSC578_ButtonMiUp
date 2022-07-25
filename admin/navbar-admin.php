@@ -1,5 +1,5 @@
 <nav class="navbar navbar-standard navbar-expand-lg fixed-top navbar-dark bg-white">
-  <div class="container"><a class="navbar-brand" href="../index.php"><img class="me-2" src="../assets/img/logo-bmu.png" alt="" width="150" /></a>
+  <div class="container"><a class="navbar-brand" href="./"><img class="me-2" src="../assets/img/logo-bmu.png" alt="" width="150" /></a>
     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
       <ul class="navbar-nav ms-auto">
