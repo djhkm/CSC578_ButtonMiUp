@@ -9,12 +9,19 @@ if (isset($_GET['delete_row'])) {
     return mysqli_affected_rows($dbcon);
 }
 
-if (isset($_POST["type"])) {
+if (isset($_POST["btn_modal_submit"])) {
+
+  //update
+
+}
+
+if (isset($_POST["delete"])) {
+
 
 
 }
 
-if (isset($_GET["type"])) {
+if (isset($_GET["delete_row"])) {
 
 
 

@@ -7,7 +7,7 @@ $_SESSION['user_id'] = $user_id;
 $order_id_hash = $_GET['order_id'];
 $order_id = "";
 
-$query_check_order_id = $dbcon -> query("SELECT OrderID FROM `order` WHERE CustomerID = '$user_id'");
+$query_check_order_id = $dbcon -> query("SELECT OrderID FROM `ORDER` WHERE CustomerID = '$user_id'");
 if ($query_check_order_id -> num_rows > 0) {
   $row_check_order_id = $query_check_order_id -> fetch_object();
   if (md5($row_check_order_id -> OrderID) == $order_id_hash) {

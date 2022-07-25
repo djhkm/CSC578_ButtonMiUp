@@ -156,11 +156,11 @@ if (isset($_POST["type"])) {
 
     do {
       $order_id = rand(1,2147483646);
-      $query_check_existing_orderid = $dbcon -> query("SELECT COUNT(OrderID) AS OrderID FROM `order` WHERE OrderID = '$order_id';");
+      $query_check_existing_orderid = $dbcon -> query("SELECT COUNT(OrderID) AS OrderID FROM `ORDER` WHERE OrderID = '$order_id';");
       $row_check_existing_orderid = $query_check_existing_orderid -> fetch_assoc();
     } while ($row_check_existing_orderid['OrderID'] > 0);
 
-    $query_add_order = $dbcon -> query("INSERT INTO `order` (OrderID, OrderStatus, DatePlaced, CustomerID) VALUES ('$order_id', '1', now(), '$user_id');");
+    $query_add_order = $dbcon -> query("INSERT INTO `ORDER` (OrderID, OrderStatus, DatePlaced, CustomerID) VALUES ('$order_id', '1', now(), '$user_id');");
 
     foreach ($_SESSION['badgeOrders'] as $badgeRow) {
       $index = $badgeRow -> getIndex();
@@ -169,7 +169,7 @@ if (isset($_POST["type"])) {
       $size = $badgeRow -> getSize();
       $qty = $badgeRow -> getQty();
 
-      $orderMultiQuery .= "INSERT INTO `order_badge` (BadgeType, Image, Size, Quantity, OrderID) VALUES ('$type', '$filename', '$size', '$qty', '$order_id');";
+      $orderMultiQuery .= "INSERT INTO ORDER_BADGE (BadgeType, Image, Size, Quantity, OrderID) VALUES ('$type', '$filename', '$size', '$qty', '$order_id');";
     }
 
     foreach ($_SESSION['stickerOrders'] as $stickerRow) {
@@ -179,7 +179,7 @@ if (isset($_POST["type"])) {
       $size = $stickerRow -> getSize();
       $color = $stickerRow -> getColor();
 
-      $orderMultiQuery .= "INSERT INTO `order_sticker` (StickerType, Labels, Size, Color, Quantity, OrderID) VALUES ('$type', '$label', '$size', '$color', '1', '$order_id');";
+      $orderMultiQuery .= "INSERT INTO ORDER_STICKER (StickerType, Labels, Size, Color, Quantity, OrderID) VALUES ('$type', '$label', '$size', '$color', '1', '$order_id');";
     }
 
     if ($dbcon -> multi_query($orderMultiQuery) && $query_add_order) {
