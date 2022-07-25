@@ -1,4 +1,22 @@
-<?php include "function-customer.php";?>
+<?php
+include "function-customer.php";
+$user_id = $_SESSION['user_id'];
+session_destroy();
+session_start();
+$_SESSION['user_id'] = $user_id;
+$order_id_hash = $_GET['order_id'];
+$order_id = "";
+
+$query_check_order_id = $dbcon -> query("SELECT OrderID FROM `order` WHERE CustomerID = '$user_id'");
+if ($query_check_order_id -> num_rows > 0) {
+  $row_check_order_id = $query_check_order_id -> fetch_object();
+  if (md5($row_check_order_id -> OrderID) == $order_id_hash) {
+    $order_id = $row_check_order_id -> OrderID;
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -41,20 +59,20 @@ include "config/danger_notification.php";
             <div class="row justify-content-center">
               <div class="col-7 col-md-5"><img class="img-fluid" src="assets/img/icons/spot-illustrations/45.png" alt="" style="width:58%;" /></div>
             </div>
-            <h3 class="mt-3 fw-normal fs-2 mt-md-4 fs-md-3">Order Placed !</h3>
-            <p class="lead mb-5">Your order will be shipped out within few days. <br class="d-none d-md-block" /> </p>
-            <div class="row justify-content-center">
-              <div class="col-md-7">
-                <form class="row gx-2">
-                  <div class="col-sm mb-2 mb-sm-0">
-                    <input class="form-control" type="email" placeholder="Email address" aria-label="Recipient's username" />
-                  </div>
-                  <div class="col-sm-auto">
-                    <button class="btn btn-primary d-block w-100" type="submit">Send Order Details</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+            <h3 class="mt-3 fw-normal fs-2 mt-md-4 fs-md-3">Order Placed <span class="text-info">#<?php echo $order_id;?></span>!</h3>
+            <p class="lead">Your order will be shipped out within few days. <br class="d-none d-md-block" /> </p>
+<!--            <div class="row justify-content-center mt-5">-->
+<!--              <div class="col-md-7">-->
+<!--                <form class="row gx-2">-->
+<!--                  <div class="col-sm mb-2 mb-sm-0">-->
+<!--                    <input class="form-control" type="email" placeholder="Email address" aria-label="Recipient's username" />-->
+<!--                  </div>-->
+<!--                  <div class="col-sm-auto">-->
+<!--                    <button class="btn btn-primary d-block w-100" type="submit">Send Order Details</button>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
 <!--          <div class="card-footer bg-light text-center pt-4">-->
 <!--            <div class="row justify-content-center">-->

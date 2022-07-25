@@ -234,13 +234,13 @@ include "config/danger_notification.php";
                     </div>
                     <div class="row">
                       <div class="col-lg-6">
-                        <p class="m-0">Postcode: <span class="fw-bold"><?php if (isset($output['postcode'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
+                        <p class="m-0">Postcode: <span class="fw-bold"><?php if (isset($output['postcode'])) { echo @$output['postcode']; } else { echo "No data"; } ?></span></p>
                       </div>
                       <div class="col-lg-6">
-                        <p class="m-0">City: <span class="fw-bold"><?php if (isset($output['city'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
+                        <p class="m-0">City: <span class="fw-bold"><?php if (isset($output['city'])) { echo @$output['city']; } else { echo "No data"; } ?></span></p>
                       </div>
                       <div class="col-lg-12">
-                        <p class="m-0">State: <span class="fw-bold"><?php if (isset($output['state'])) { echo @$output['address1']; } else { echo "No data"; } ?></span></p>
+                        <p class="m-0">State: <span class="fw-bold"><?php if (isset($output['state'])) { echo @$output['state']; } else { echo "No data"; } ?></span></p>
                       </div>
                     </div>
                     <?php
@@ -327,44 +327,44 @@ include "config/danger_notification.php";
                   }
                   ?>
 
-                  <div class="row mt-4">
-                    <div class="col">
-                      <h4>Estimated Price</h4>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      Subtotal
-                    </div>
-                    <div class="col-md-2" align="right">
-                      RM
-                    </div>
-                    <div class="col-md-4" align="right">
-                      0.00
-                    </div>
-                  </div>
-                  <div class="row border-bottom">
-                    <div class="col-md-6">
-                      Shipping Fee
-                    </div>
-                    <div class="col-md-2" align="right">
-                      RM
-                    </div>
-                    <div class="col-md-4" align="right">
-                      8.00
-                    </div>
-                  </div>
-                  <div class="row border-bottom d-flex align-items-center">
-                    <div class="col-6">
-                      Total
-                    </div>
-                    <div class="col-2" align="right">
-                      RM
-                    </div>
-                    <div class="col-4 fs-3" style="font-weight:bold" align="right">
-                      8.00
-                    </div>
-                  </div>
+<!--                  <div class="row mt-4">-->
+<!--                    <div class="col">-->
+<!--                      <h4>Estimated Price</h4>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-md-6">-->
+<!--                      Subtotal-->
+<!--                    </div>-->
+<!--                    <div class="col-md-2" align="right">-->
+<!--                      RM-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4" align="right">-->
+<!--                      0.00-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row border-bottom">-->
+<!--                    <div class="col-md-6">-->
+<!--                      Shipping Fee-->
+<!--                    </div>-->
+<!--                    <div class="col-md-2" align="right">-->
+<!--                      RM-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4" align="right">-->
+<!--                      8.00-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row border-bottom d-flex align-items-center">-->
+<!--                    <div class="col-6">-->
+<!--                      Total-->
+<!--                    </div>-->
+<!--                    <div class="col-2" align="right">-->
+<!--                      RM-->
+<!--                    </div>-->
+<!--                    <div class="col-4 fs-3" style="font-weight:bold" align="right">-->
+<!--                      8.00-->
+<!--                    </div>-->
+<!--                  </div>-->
                   <div class="row mt-4">
                     <div class="col">
                       <button type="button" class="btn btn-lg bg-theme-cus col-12" id="at_cart_btn">Place Order</button>
@@ -386,7 +386,7 @@ include "config/danger_notification.php";
           console.log('cart start');
 
           $.ajax({
-            type: 'POST',
+            method: 'POST',
             url: 'function-customer.php',
             data: {
               type:'at_cart'
@@ -398,10 +398,14 @@ include "config/danger_notification.php";
               loader.showLoader();
             },
             success:function (data){
-              //console.log('POSTED update, data is \n' + data);
+              $('#infoNotificationToast').toast('hide');
+              $('#at_cart_btn').attr('disabled', false);
 
+              //console.log('POSTED update, data is \n' + data);
               var dataResult = JSON.parse(data);
-              document.getElementById('itemBadge[' + rowIndex + '][badgeImageName]').innerHTML = dataResult.fileName;
+
+              loader.hideLoader();
+              location.href = "finished-cart.php?order_id=" + dataResult.orderID;
             }
           });
 

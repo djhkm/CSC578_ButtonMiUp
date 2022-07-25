@@ -1,4 +1,5 @@
 <?php
+require_once 'cartclasses.php';
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
@@ -147,6 +148,56 @@ if (isset($_POST["type"])) {
 
   }
 
+  if ($_POST["type"] == "at_cart") {
+
+    $orderMultiQuery = "";
+    $user_id = @$_SESSION["user_id"];
+    $order_id = "";
+
+    do {
+      $order_id = rand(1,2147483646);
+      $query_check_existing_orderid = $dbcon -> query("SELECT COUNT(OrderID) AS OrderID FROM `order` WHERE OrderID = '$order_id';");
+      $row_check_existing_orderid = $query_check_existing_orderid -> fetch_assoc();
+    } while ($row_check_existing_orderid['OrderID'] > 0);
+
+    $query_add_order = $dbcon -> query("INSERT INTO `order` (OrderID, OrderStatus, DatePlaced, CustomerID) VALUES ('$order_id', '1', now(), '$user_id');");
+
+    foreach ($_SESSION['badgeOrders'] as $badgeRow) {
+      $index = $badgeRow -> getIndex();
+      $filename = $badgeRow -> getFilename();
+      $type = $badgeRow -> getType();
+      $size = $badgeRow -> getSize();
+      $qty = $badgeRow -> getQty();
+
+      $orderMultiQuery .= "INSERT INTO `order_badge` (BadgeType, Image, Size, Quantity, OrderID) VALUES ('$type', '$filename', '$size', '$qty', '$order_id');";
+    }
+
+    foreach ($_SESSION['stickerOrders'] as $stickerRow) {
+      $index = $stickerRow -> getIndex();
+      $label = $stickerRow -> getLabels();
+      $type = $stickerRow -> getType();
+      $size = $stickerRow -> getSize();
+      $color = $stickerRow -> getColor();
+
+      $orderMultiQuery .= "INSERT INTO `order_sticker` (StickerType, Labels, Size, Color, Quantity, OrderID) VALUES ('$type', '$label', '$size', '$color', '1', '$order_id');";
+    }
+
+    if ($dbcon -> multi_query($orderMultiQuery) && $query_add_order) {
+      echo json_encode(array(
+          "statusText" => "cart end",
+          "statusCode" => 200,
+          "orderID" => md5($order_id)
+      ));
+    }
+    else {
+      echo json_encode(array(
+          "statusText" => "cart error, internal server error",
+          "statusCode" => 500,
+          "orderID" => md5($order_id)
+      ));
+    }
+
+  }
 
 }
 
